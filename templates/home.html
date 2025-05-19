@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Úvodná stránka</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Výber z databázy</h1>
+        
+        <div class="button-container">
+            <a href="/kurzy" class="btn">Zobraz všetky kurzy</a>
+            <a href="/treneri" class="btn">Zobraz všetkých trénerov</a>
+            <a href="/miesta" class="btn">Zobraz miesta</a>
+            <a href="/kapacita" class="btn">Zobraz kapacitu kurzov</a>
+            <a href="/registracia" class="btn">Registruj trénera</a>
+            <a href="/pridaj_kurz" class="btn">Pridaj nový kurz</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
