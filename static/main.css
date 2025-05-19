@@ -1,0 +1,123 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #1e2a38;
+    margin-bottom: 25px;
+}
+
+p {
+    font-size: 17px;
+    margin-bottom: 14px;
+}
+
+button,
+a.btn {
+    display: inline-block;
+    background-color: #2e8b57;
+    color: white;
+    padding: 12px 24px;
+    margin: 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover,
+a.btn:hover {
+    background-color: #246b45;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+form input:focus {
+    border-color: #2e8b57;
+    outline: none;
+}
+
+.alert-box {
+    padding: 14px 18px;
+    margin: 12px 0;
+    border-left: 5px solid #2e8b57;
+    background-color: #e6f4ed;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+a.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2e8b57;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+a.back-link:hover {
+    color: #1d5c3d;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    background-color: #2e8b57;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #246b45;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
