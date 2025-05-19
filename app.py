@@ -1,6 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request,  render_template
 import sqlite3
 import hashlib
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 
@@ -21,17 +23,8 @@ def afinne_sifrovanie(text):
     return vysledok
 
 @app.route('/')
-def index():
-    return '''
-        <h1>Výber z databázy</h1>
-        <a href="/kurzy"><button type="button">Zobraz všetky kurzy</button></a>
-        <a href="/treneri"><button type="button">Zobraz všetkých trénerov</button></a>
-        <a href="/miesta"><button type="button">Zobraz miesta</button></a>
-        <a href="/kapacita"><button type="button">Zobraz kapacitu</button></a>
-        <a href="/registracia"><button type="button">Registruj trénera</button></a>
-        <a href="/pridaj_kurz"><button type="button">Pridaj nový kurz</button></a>
-        <hr>
-    '''
+def home():
+    return render_template('home.html')
 
 @app.route('/kurzy')
 def zobraz_kurzy():
@@ -41,11 +34,7 @@ def zobraz_kurzy():
     kurzy = cursor.fetchall()
     conn.close()
 
-    vystup = "<h2>Zoznam kurzov:</h2>"
-    for kurz in kurzy:
-        vystup += f"<p>{kurz}</p>"
-    vystup += '<br><a href="/"><button type="button">Späť</button></a>'
-    return vystup
+    return render_template("kurzy.html", kurzy=kurzy)
 
 @app.route('/treneri')
 def zobraz_trenerov():
@@ -60,11 +49,7 @@ def zobraz_trenerov():
     treneri = cursor.fetchall()
     conn.close()
 
-    vystup = "<h2>Zoznam trénerov a kurzov:</h2>"
-    for trener in treneri:
-        vystup += f"<p>{trener[1]} - {trener[2]}</p>"
-    vystup += '<br><a href="/"><button type="button">Späť</button></a>'
-    return vystup
+    return render_template("treneri.html", treneri=treneri)
 
 @app.route('/miesta')
 def zobraz_miesta():
