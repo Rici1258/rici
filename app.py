@@ -12,6 +12,18 @@ app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}".replace("\\", "/"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+class Kurz(db.Model):
+    __tablename__ = "Kurzy"
+
+    ID_kurzu = db.Column(db.Integer, primary_key=True)
+    Nazov_kurzu = db.Column(db.String, nullable=False)
+    Typ_sportu = db.Column(db.String)
+    Max_pocet_ucastnikov = db.Column(db.Integer)
+    ID_trenera = db.Column(db.Integer)
+
+    def repr(self):
+        return f"<Kurz {self.Nazov_kurzu}>"
+
 def pripoj_db():
     conn = sqlite3.connect("kurzy.db")
     return conn
