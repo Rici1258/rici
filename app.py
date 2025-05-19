@@ -6,9 +6,16 @@ import os
 
 app = Flask(__name__, instance_relative_config=True)
 
+db_path = os.path.join(app.instance_path, "kurzy.db")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}".replace("\\", "/")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
+
 def pripoj_db():
     conn = sqlite3.connect("kurzy.db")
     return conn
+
 
 # Afinná šifra (A=5, B=8)
 def afinne_sifrovanie(text):
