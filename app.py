@@ -4,12 +4,18 @@ import hashlib
 from flask_sqlalchemy import SQLAlchemy
 import os
 
+from flask import g, session 
+from i18n import TRANSLATIONS, SUPPORTED
+
 app = Flask(__name__, instance_relative_config=True)
 
 db_path = os.path.abspath("kurzy.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
+app = Flask(__name__)
+app.secret_key = "tajny_kluc"
 
 class Kurz(db.Model):
     __tablename__ = "Kurzy"
@@ -27,8 +33,6 @@ def pripoj_db():
     conn = sqlite3.connect("kurzy.db")
     return conn
 
-
-# Afinná šifra (A=5, B=8)
 def afinne_sifrovanie(text):
     vysledok = ''
     for znak in text:
@@ -39,6 +43,18 @@ def afinne_sifrovanie(text):
         else:
             vysledok += znak
     return vysledok
+
+@app.before_request
+def set_lang():
+    lang = request.args.get("lang")
+    if lang not in SUPPORTED:
+        lang = session.get("lang", "sk")
+    session["lang"] = lang
+    g.t = TRANSLATIONS[lang]
+
+@app.context_processor
+def inject_translations():
+    return dict(t=g.t)
 
 @app.route('/')
 def home():
@@ -147,7 +163,6 @@ def pridaj_kurz():
         kapacita = request.form['kapacita']
         trener_id = request.form['trener_id']
 
-        # Šifrovanie textových údajov
         nazov_sifrovany = afinne_sifrovanie(nazov)
         typ_sifrovany = afinne_sifrovanie(typ)
 
