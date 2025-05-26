@@ -7,7 +7,7 @@ import os
 app = Flask(__name__, instance_relative_config=True)
 
 db_path = os.path.abspath("kurzy.db")
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}".replace
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
